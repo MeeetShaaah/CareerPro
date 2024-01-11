@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Component
 public class SearchRepositoryImpl implements SearchRepository{
 
     @Autowired
@@ -22,21 +23,20 @@ public class SearchRepositoryImpl implements SearchRepository{
     @Autowired
     MongoConverter converter;
 
+    final List<Post> posts = new ArrayList<>();
+
     @Override
     public List<Post> findByText(String text) {
 
-        final List<Post> posts = new ArrayList<>();
-
-        MongoDatabase database = client.getDatabase("telusko");
+        MongoDatabase database = client.getDatabase("ShreyRaj");
         MongoCollection<Document> collection = database.getCollection("JobPost");
-
-        AggregateIterable<Document> result = collection.aggregate(Arrays.asList(new Document("$search",
-                        new Document("text",
-                        new Document("query", text)
-                        .append("path", Arrays.asList("techs", "desc", "profile")))),
-                        new Document("$sort",
-                        new Document("exp", 1L)),
-                        new Document("$limit", 5L)));
+        AggregateIterable<Document> result = collection.aggregate(Arrays.asList(new Document("$search", 
+        new Document("text", 
+        new Document("query", text)
+                   .append("path", Arrays.asList("techs", "desc", "profile")))), 
+        new Document("$sort", 
+        new Document("exp", 1L)), 
+        new Document("$limit", 10L)));
 
         result.forEach(doc -> posts.add(converter.read(Post.class,doc)));
 

@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
+@CrossOrigin(origins = "https://localhost:3000")
 public class PostController {
 
     @Autowired
