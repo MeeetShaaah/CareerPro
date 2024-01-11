@@ -2,6 +2,9 @@ package com.Project.JobListing.Model;
 
 import java.util.Arrays;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "JobPost")
 public class Post {
     private String profile;
     private String desc;
