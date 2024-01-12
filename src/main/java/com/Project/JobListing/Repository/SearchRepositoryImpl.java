@@ -1,7 +1,7 @@
 package com.Project.JobListing.Repository;
 
 import com.Project.JobListing.Model.Post;
-import com.mongodb.client.AggregateIterable;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -11,11 +11,10 @@ import org.springframework.data.mongodb.core.convert.MongoConverter;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Component
-public class SearchRepositoryImpl implements SearchRepository{
+public class SearchRepositoryImpl implements SearchRepository {
 
     @Autowired
     MongoClient client;
@@ -23,24 +22,33 @@ public class SearchRepositoryImpl implements SearchRepository{
     @Autowired
     MongoConverter converter;
 
-    final List<Post> posts = new ArrayList<>();
-
     @Override
     public List<Post> findByText(String text) {
+        List<Post> posts = new ArrayList<>();
 
-        MongoDatabase database = client.getDatabase("ShreyRaj");
-        MongoCollection<Document> collection = database.getCollection("JobPost");
-        AggregateIterable<Document> result = collection.aggregate(Arrays.asList(new Document("$search", 
-        new Document("text", 
-        new Document("query", text)
-                   .append("path", Arrays.asList("techs", "desc", "profile")))), 
-        new Document("$sort", 
-        new Document("exp", 1L)), 
-        new Document("$limit", 10L)));
+        try {
+            MongoDatabase database = client.getDatabase("ShreyRaj");
+            MongoCollection<Document> collection = database.getCollection("JobPost");
 
-        result.forEach(doc -> posts.add(converter.read(Post.class,doc)));
+            // Clear the list before each search
+            posts.clear();
+
+            // Create a text index on the relevant fields: techs, desc, profile
+            collection.createIndex(new Document("techs", "text").append("desc", "text").append("profile", "text"));
+
+            // Search using the text index
+            FindIterable<Document> result = collection.find(
+                new Document("$text", new Document("$search", text)))
+                .sort(new Document("exp", 1))
+                .limit(10);
+
+            result.forEach(doc -> posts.add(converter.read(Post.class, doc)));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Log or handle the exception appropriately
+        }
 
         return posts;
     }
-    
 }

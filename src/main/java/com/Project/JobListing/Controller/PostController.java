@@ -49,7 +49,7 @@ public class PostController {
     }
 
     // posts/java
-    @GetMapping("/posts/{text}")
+    @GetMapping("api/posts/{text}")
     @CrossOrigin
     public List<Post> search(@PathVariable String text)
     {
