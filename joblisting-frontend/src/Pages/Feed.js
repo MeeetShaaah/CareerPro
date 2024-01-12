@@ -82,7 +82,7 @@ import {
                       </Typography>
                     );
                   })}
-    
+
                 </Card>
               </Grid>
             );
