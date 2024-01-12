@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home, Feed, Dashboard, Create } from "./pages"
+import { Home, Feed, Dashboard, Create } from "c:/Users/Meet/Desktop/Project/JobListing/joblisting-frontend/src/Pages"
 
 function App() {
   return (
