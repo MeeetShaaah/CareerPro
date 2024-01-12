@@ -7,8 +7,6 @@ import { Button } from "@mui/material"
 import { Link } from "react-router-dom"
 import Create from './Create';
 
-
-
 export default function Home() {
   const [value, setValue] = React.useState('1');
   const handleChange = (event, newValue) => {

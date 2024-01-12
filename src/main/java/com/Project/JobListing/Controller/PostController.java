@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
-@CrossOrigin(origins = "https://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000")
 public class PostController {
 
     @Autowired
@@ -56,7 +56,7 @@ public class PostController {
         return srepo.findByText(text);
     }
 
-    @PostMapping("/post")
+    @PostMapping("api/post")
     @CrossOrigin
     public Post addPost(@RequestBody Post post)
     {

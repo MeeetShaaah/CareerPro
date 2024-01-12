@@ -1,20 +1,20 @@
-import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home, Feed, Dashboard, Create } from "c:/Users/Meet/Desktop/Project/JobListing/joblisting-frontend/src/Pages"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Home, Feed, Dashboard, Create } from "./Pages";
+import EmployerRoutes from "./EmployerRoutes";
+import EmployeeRoutes from "./EmployeeRoutes";
+
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/employer" >
-          <Route path="/employer/dashboard" element={<Dashboard />}/>
-          <Route path="/employer/create" element={<Create />}/>
-          </Route>
-          <Route path="/employee/feed" element={<Feed />}/>
+        <Route path="/" element={<Home />} />
+        <Route path="/employer/*" element={<EmployerRoutes />} />
+        <Route path="/employee/*" element={<EmployeeRoutes />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 
 export default App;
+
