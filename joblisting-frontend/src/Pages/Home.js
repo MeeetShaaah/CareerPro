@@ -3,6 +3,7 @@ import { Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import "../App.css";
 
+
 const Home = () => {
   const scrollToTop = () => {
     window.scrollTo({
@@ -14,7 +15,7 @@ const Home = () => {
   return (
     <div>
       {/* Striking Hero Section with Gradient Background */}
-      <div style={{ textAlign: "center", background: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('path/to/your-hero-image.jpg') center/cover", padding: "5% 5%", color: "white" }}>
+      <div style={{ textAlign: "center", background: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../Pages/img.jpg') center/cover", padding: "5% 5%", color: "white" }}>
         <Typography variant="h4" align="center" style={{ marginBottom: "2%", fontSize: "2.5rem", fontWeight: "bold" }}>
           Elevate Your Career: Unlock Opportunities and Connect with Top Talent!
         </Typography>
