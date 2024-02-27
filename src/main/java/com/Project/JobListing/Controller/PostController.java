@@ -23,8 +23,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
-// @CrossOrigin(origins = "http://localhost:3000")
-@CrossOrigin(origins = "https://careerpro-three.vercel.app/")
+@CrossOrigin(origins = "http://localhost:3000")
+// @CrossOrigin(origins = "https://careerpro-three.vercel.app/")
 public class PostController {
 
     @Autowired
