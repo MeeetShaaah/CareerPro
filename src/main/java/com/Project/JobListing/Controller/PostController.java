@@ -22,9 +22,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
+
+
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
-// @CrossOrigin(origins = "https://careerpro-three.vercel.app/")
 public class PostController {
 
     @Autowired
@@ -41,21 +43,25 @@ public class PostController {
 
     @GetMapping("/allPosts")
     @CrossOrigin
-    public List<Post> getAllPosts() {
+    public List<Post> getAllPosts()
+    {
         return repo.findAll();
     }
 
     // posts/java
     @GetMapping("api/posts/{text}")
     @CrossOrigin
-    public List<Post> search(@PathVariable String text) {
+    public List<Post> search(@PathVariable String text)
+    {
         return srepo.findByText(text);
     }
 
     @PostMapping("api/post")
     @CrossOrigin
-    public Post addPost(@RequestBody Post post) {
+    public Post addPost(@RequestBody Post post)
+    {
         return repo.save(post);
     }
-
+    
+    
 }
