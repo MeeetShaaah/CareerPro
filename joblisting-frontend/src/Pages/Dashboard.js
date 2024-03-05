@@ -14,11 +14,7 @@ export default function Home() {
 
   return (
     <Grid container justifyContent="center" alignItems="center" direction="column" spacing={3}>
-      <Grid item>
-        <Typography variant="h3" align="center">
-          EMPLOYER DASHBOARD
-        </Typography>
-      </Grid>
+      
       <Grid item>
       <Button
   variant="outlined"
@@ -44,13 +40,12 @@ export default function Home() {
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
               <TabList onChange={handleChange} aria-label="lab API tabs example">
                 <Tab label="Create Post" value="1" />
-                {/* Add more tabs if needed */}
+            
               </TabList>
             </Box>
             <TabPanel value="1">
               <Create />
             </TabPanel>
-            {/* Add more TabPanels for additional tabs */}
           </TabContext>
         </Paper>
       </Grid>

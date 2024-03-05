@@ -39,7 +39,7 @@ const Create = () => {
       })
       .catch((error) => {
         console.error('Error:', error);
-        // Add the following line to log the specific error message
+        
         console.error('Error Message:', error.message);
       });
   };
@@ -98,7 +98,7 @@ const Create = () => {
               value={desc}
             />
             <Box sx={{ margin: '1% auto' }}>
-              <Typography variant="h6" sx={{ color: '#3f51b5' }}>Please mention required skills</Typography>
+              <Typography variant="h6" sx={{ color: '#3f51b5' }}>Required skills: </Typography>
               {skillSet.map(({ name }, index) => (
                 <FormControlLabel
                   key={index}
